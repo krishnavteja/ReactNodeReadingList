@@ -7,10 +7,11 @@ var readItemSchema: any = new mongoose.Schema({
     url: { type: String, required: false },
     description: { type: String, required: false },
     topic: { type: String, required: true },
-    priority: { type: Number, required: true, default: 10 },
+    complete: { type: Boolean, default: false },
+    priority: { type: Number, default: 10 },
     optional: { type: Boolean, default: false}
 });
 
-var readItem = mongoose.model<IreadItemModel>("readItem", readItemSchema);
+var readitem = mongoose.model<IreadItemModel>("readitem", readItemSchema);
 
-export { readItem };
+export { readitem };

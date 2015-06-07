@@ -9,6 +9,7 @@ interface IreadItem {
     topic: string;
     priority: number;
     optional: boolean;
+    complete: boolean;
 }
 
 interface IreadItemModel extends IreadItem, mongoose.Document { }

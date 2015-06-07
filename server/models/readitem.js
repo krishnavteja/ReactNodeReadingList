@@ -4,9 +4,10 @@ var readItemSchema = new mongoose.Schema({
     url: { type: String, required: false },
     description: { type: String, required: false },
     topic: { type: String, required: true },
-    priority: { type: Number, required: true, default: 10 },
+    complete: { type: Boolean, default: false },
+    priority: { type: Number, default: 10 },
     optional: { type: Boolean, default: false }
 });
-var readItem = mongoose.model("readItem", readItemSchema);
-exports.readItem = readItem;
+var readitem = mongoose.model("readitem", readItemSchema);
+exports.readitem = readitem;
 //# sourceMappingURL=readitem.js.map
