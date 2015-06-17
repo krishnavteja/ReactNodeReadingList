@@ -1,6 +1,5 @@
 var mongoose = require("mongoose");
 var readItemSchema = new mongoose.Schema({
-    title: { type: String, required: true, index: { unique: true } },
     url: { type: String, required: false },
     description: { type: String, required: false },
     topic: { type: String, required: true },

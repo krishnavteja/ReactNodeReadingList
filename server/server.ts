@@ -41,18 +41,23 @@ app.use((req, res, next)  => {
 // =======================
 // basic route
 app.get('/',(req, res) => {
-    res.send('Hello! The API is at http://localhost:' + port + '/api');
+   res.send('Hello! The API is at http://localhost:' + port + '/api');
+});
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
 // API ROUTES -------------------
 // get an instance of the router for api routes
 var apiRoutes = express.Router(); 
 
-// route to authenticate a user (POST http://localhost:8080/api/newreaditem?title=xyz...)
+// route to authenticate a user (POST http://localhost:8080/api/newreaditem?description=xyz...)
 apiRoutes.post('/newreaditem', (req, res) => {
   // create a new readitem
   var newReadItem = new readitem({ 
-    title: req.body.title,
     description: req.body.description,
     url: req.body.url, 
     topic: req.body.topic,
@@ -73,11 +78,46 @@ apiRoutes.post('/newreaditem', (req, res) => {
         res.json({ success: true });
      });
    });
+   
+ apiRoutes.put('/readitem/:id', function (req, res){
+  return readitem.findById(req.params.id, function (err, readItem) {
+    readItem.description = req.body.description;
+    readItem.url = req.body.url;
+    readItem.topic = req.body.topic;
+    readItem.complete = req.body.complete;
+    readItem.priority = req.body.priority;
+    readItem.optional = req.body.optional;
+    
+    return readItem.save(function (err) {
+      if (!err) {
+        console.log("updated");
+      } else {
+        console.log(err);
+      }
+      return res.send(readItem);
+    });
+  });
+});
+
+apiRoutes.delete('/readiitem/:id', function (req, res){
+  return readitem.findById(req.params.id, function (err, readItem) {
+    return readItem.remove(function (err) {
+      if (!err) {
+        console.log("removed");
+        return res.send('');
+      } else {
+        console.log(err);
+      }
+    });
+  });
+});
+
+
 
 // route to return all items (GET http://localhost:8080/api/readitems)
 apiRoutes.get('/readitems', (req, res) => {
   readitem.find({}, (err, items) => {
-    res.jsonp(items);
+    res.json(items);
   });
 });  
 
@@ -86,7 +126,7 @@ apiRoutes.get('/readitem/:itemid', (req, res) => {
   readitem.findById(req.params.itemid, function(err, item) {
             if (err)
                 res.send(err);
-            res.jsonp(item);
+            res.json(item);
   });
 });
 

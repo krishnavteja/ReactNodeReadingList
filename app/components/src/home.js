@@ -31,16 +31,15 @@
     optional: true }];
 
     var ReadingList = React.createClass({
-        loadCommentsFromServer: function() {
+        loadReadItemsFromServer: function() {
 
             var that = this;
 
             $.ajax({
-                url: "http://localhost:8888/api/readitems?callback=?",
-                dataType: 'jsonp',
-                jsonp: 'readitemsCallback',
+                url: "http://localhost:8888/api/readitems",
+                dataType: 'json',
                 success: function(data) {
-                        //that.setState({ items: data });
+                        that.setState({ items: data });
                     },
                 error: function(XHR, textStatus, errorThrown){
                         alert(textStatus + ":" + errorThrown);
@@ -51,7 +50,7 @@
             return {items: tstitems};
           },
         componentDidMount: function() {
-            this.loadCommentsFromServer();
+            this.loadReadItemsFromServer();
           },
         goToManagePage: function(itemId, e){
             if (!e) var e = window.event;

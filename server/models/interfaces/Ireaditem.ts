@@ -3,7 +3,6 @@
 import * as mongoose from "mongoose";
 
 interface IreadItem {
-    title: string;
     description: string;
     url: string;
     topic: string;

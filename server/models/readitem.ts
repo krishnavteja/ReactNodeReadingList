@@ -3,7 +3,6 @@ import * as mongoose from "mongoose";
 import { IreadItemModel } from "./interfaces/Ireaditem";
 
 var readItemSchema: any = new mongoose.Schema({
-    title: { type: String, required: true, index: { unique: true } },
     url: { type: String, required: false },
     description: { type: String, required: false },
     topic: { type: String, required: true },
@@ -15,3 +14,4 @@ var readItemSchema: any = new mongoose.Schema({
 var readitem = mongoose.model<IreadItemModel>("readitem", readItemSchema);
 
 export { readitem };
+
