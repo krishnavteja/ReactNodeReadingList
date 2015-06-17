@@ -24,6 +24,7 @@ app.get('/', function (req, res) {
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
     next();
 });
 var apiRoutes = express.Router();
@@ -56,6 +57,7 @@ apiRoutes.put('/readitem/:id', function (req, res) {
         return readItem.save(function (err) {
             if (!err) {
                 console.log("updated");
+                return res.send({ success: true });
             }
             else {
                 console.log(err);
@@ -64,12 +66,12 @@ apiRoutes.put('/readitem/:id', function (req, res) {
         });
     });
 });
-apiRoutes.delete('/readiitem/:id', function (req, res) {
+apiRoutes.delete('/readitem/:id', function (req, res) {
     return readitem_1.readitem.findById(req.params.id, function (err, readItem) {
         return readItem.remove(function (err) {
             if (!err) {
                 console.log("removed");
-                return res.send('');
+                return res.send({ success: true });
             }
             else {
                 console.log(err);

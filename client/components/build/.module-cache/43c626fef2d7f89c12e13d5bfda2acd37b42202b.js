@@ -24,34 +24,25 @@
         componentDidMount: function() {
             this.loadReadItemsFromServer();
           },
-        goToManagePage: function(item, e){
+        goToManagePage: function(itemId, e){
             if (!e) var e = window.event;
                 e.cancelBubble = true;
             if (e.stopPropagation) 
                 e.stopPropagation();
-            location.href = "managereaditem.html?itemid=" + item._id;
+            location.href = "managereaditem.html?itemid=" + itemId;
         },
-        deleteItem: function(item, e){
-            var that = this;
-            var existingItems = this.state.items;
-
+        deleteItem: function(itemId, e){
             if (!e) var e = window.event;
                 e.cancelBubble = true;
             if (e.stopPropagation) 
                 e.stopPropagation();
             
-            var itemId = item._id;
-
             $.ajax({
                 url: "http://localhost:8888/api/readitem/" + itemId,
                 type: 'delete',
                 dataType: 'json',
                 success: function(data) {
-                    var index = existingItems.indexOf(item);
-                        if (index > -1) {
-                            existingItems.splice(index, 1);
-                            that.setState({ items: existingItems });
-                        }
+                        alert('successfully deleted');
                     },
                 error: function(XHR, textStatus, errorThrown){
                         alert(textStatus + ":" + errorThrown);
@@ -89,8 +80,8 @@
                                         React.createElement("span", null, "Tags: "), React.createElement("span", null, React.createElement("i", null, item.topic))
                                     ), 
                                     React.createElement("div", {className: "col-md-1 col-sm-2 col-xs-3"}, 
-                                        React.createElement("button", {onClick: this.goToManagePage.bind(this, item), className: "btn btn-default btn-sm"}, "Edit"), 
-                                        React.createElement("button", {onClick: this.deleteItem.bind(this, item), className: "btn btn-default btn-sm"}, "Delete")
+                                        React.createElement("button", {onClick: this.goToManagePage.bind(this, item._id), className: "btn btn-default btn-sm"}, "Edit"), 
+                                        React.createElement("button", {onClick: this.deleteItem.bind(this, item._id), className: "btn btn-default btn-sm"}, "Delete")
                                     )
                             )
                         )

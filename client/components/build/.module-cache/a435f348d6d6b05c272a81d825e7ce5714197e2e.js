@@ -24,17 +24,14 @@
         componentDidMount: function() {
             this.loadReadItemsFromServer();
           },
-        goToManagePage: function(item, e){
+        goToManagePage: function(itemId, e){
             if (!e) var e = window.event;
                 e.cancelBubble = true;
             if (e.stopPropagation) 
                 e.stopPropagation();
-            location.href = "managereaditem.html?itemid=" + item._id;
+            location.href = "managereaditem.html?itemid=" + itemId;
         },
         deleteItem: function(item, e){
-            var that = this;
-            var existingItems = this.state.items;
-
             if (!e) var e = window.event;
                 e.cancelBubble = true;
             if (e.stopPropagation) 
@@ -47,10 +44,9 @@
                 type: 'delete',
                 dataType: 'json',
                 success: function(data) {
-                    var index = existingItems.indexOf(item);
+                    var index = this.state.items.indexOf(item);
                         if (index > -1) {
-                            existingItems.splice(index, 1);
-                            that.setState({ items: existingItems });
+                            this.state.items.splice(index, 1);
                         }
                     },
                 error: function(XHR, textStatus, errorThrown){

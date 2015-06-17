@@ -33,7 +33,6 @@
         },
         deleteItem: function(item, e){
             var that = this;
-            var existingItems = this.state.items;
 
             if (!e) var e = window.event;
                 e.cancelBubble = true;
@@ -47,10 +46,9 @@
                 type: 'delete',
                 dataType: 'json',
                 success: function(data) {
-                    var index = existingItems.indexOf(item);
+                    var index = that.state.items.indexOf(item);
                         if (index > -1) {
-                            existingItems.splice(index, 1);
-                            that.setState({ items: existingItems });
+                            that.state.items.splice(index, 1);
                         }
                     },
                 error: function(XHR, textStatus, errorThrown){

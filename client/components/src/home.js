@@ -2,34 +2,6 @@
     
     'use strict';
     
-    var tstitems = [{ 
-        _id: "sdsdsd",
-        title: "Title 1",
-    url: "http://www.angular.com",
-    description: "Description 1",
-    topic: "Angular",
-    complete: false,
-    priority: 3,
-    optional: false }, 
-    { 
-        _id: "qwqwq",
-        title: "Title 2",
-    url: "http://www.react.com",
-    description: "Description 2",
-    topic: "React",
-    complete: false,
-    priority: 2,
-    optional: false }, 
-    { 
-        _id: "popop",
-        title: "Title 3",
-    url: "http://www.Node.com",
-    description: "Description 3",
-    topic: "Node",
-    complete: true,
-    priority: 1,
-    optional: true }];
-
     var ReadingList = React.createClass({
         loadReadItemsFromServer: function() {
 
@@ -47,17 +19,44 @@
             });
           },
         getInitialState: function() {
-            return {items: tstitems};
+            return {items: []};
           },
         componentDidMount: function() {
             this.loadReadItemsFromServer();
           },
-        goToManagePage: function(itemId, e){
+        goToManagePage: function(item, e){
             if (!e) var e = window.event;
                 e.cancelBubble = true;
             if (e.stopPropagation) 
                 e.stopPropagation();
-            location.href = "managereaditem.html?itemid=" + itemId;
+            location.href = "managereaditem.html?itemid=" + item._id;
+        },
+        deleteItem: function(item, e){
+            var that = this;
+            var existingItems = this.state.items;
+
+            if (!e) var e = window.event;
+                e.cancelBubble = true;
+            if (e.stopPropagation) 
+                e.stopPropagation();
+            
+            var itemId = item._id;
+
+            $.ajax({
+                url: "http://localhost:8888/api/readitem/" + itemId,
+                type: 'delete',
+                dataType: 'json',
+                success: function(data) {
+                    var index = existingItems.indexOf(item);
+                        if (index > -1) {
+                            existingItems.splice(index, 1);
+                            that.setState({ items: existingItems });
+                        }
+                    },
+                error: function(XHR, textStatus, errorThrown){
+                        alert(textStatus + ":" + errorThrown);
+                } 
+            });
         },
         goToUrl: function(url, e){
             if (!e) var e = window.event;
@@ -90,7 +89,8 @@
                                         <span>Tags: </span><span><i>{item.topic}</i></span>
                                     </div>
                                     <div className="col-md-1 col-sm-2 col-xs-3">
-                                        <button onClick={this.goToManagePage.bind(this, item._id)} className="btn btn-default btn-sm">Edit</button>
+                                        <button onClick={this.goToManagePage.bind(this, item)} className="btn btn-default btn-sm">Edit</button>
+                                        <button onClick={this.deleteItem.bind(this, item)} className="btn btn-default btn-sm">Delete</button>
                                     </div>
                             </div>
                         </a>
