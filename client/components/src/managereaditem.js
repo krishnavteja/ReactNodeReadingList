@@ -51,7 +51,7 @@
 				  url: url,
 				  data: postData,
 				  success: function(result){
-				        alert( "Data Saved: " + result.success );
+				        location.href = "home.html";
 				  },
 				  error: function(XMLHttpRequest, textStatus, errorThrown) {
 				     alert("some error - " + textStatus + " - " + errorThrown + " - " + XMLHttpRequest);
