@@ -138,14 +138,8 @@
 				      React.createElement("input", {type: "checkbox", checkedLink: completeLink}), " Optional"
 				    )
 				  ), 
-				  React.createElement("button", {onClick: this.saveChanges.bind(this), className: "btn btn-default"}, "Submit"), 
+				  React.createElement("button", {onClick: this.saveChanges.bind(this), className: "btn btn-default"}, "Submit")
 
-				  React.createElement("p", null, "Url - ", this.state.item.url), 
-				  React.createElement("p", null, "Notes - ", this.state.item.description), 
-				  React.createElement("p", null, "Tags - ", this.state.item.topic), 
-				  React.createElement("p", null, "Priority - ", this.state.item.priority), 
-				  React.createElement("p", null, "Complete - ", this.state.item.complete  ? this.state.item.complete.toString() : '')
-                
             ));
         }
     }); 

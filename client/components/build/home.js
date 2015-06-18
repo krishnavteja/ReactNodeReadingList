@@ -63,6 +63,10 @@
                 e.cancelBubble = true;
             if (e.stopPropagation) 
                 e.stopPropagation();
+
+            if(url.indexOf('http') == -1)
+                url = 'http://' + url;
+
             location.href = url;
         },
         render: function() {
@@ -72,7 +76,9 @@
                     React.createElement("h1", {style: { textAlign : 'center'}}, "Reading List")
                 ), 
                 React.createElement("div", {className: "col-md-1 col-sm-2 col-xs-3"}, 
-                    React.createElement("a", {href: "managereaditem.html", className: "btn btn-primary", style: {marginTop:'24px'}}, "New")
+                    React.createElement("a", {href: "managereaditem.html", className: "btn btn-primary", style: {marginTop:'24px'}}, 
+                        React.createElement("span", {className: "glyphicon glyphicon-plus"})
+                    )
                 )
             ), 
                 
@@ -89,8 +95,8 @@
                                         React.createElement("span", null, "Tags: "), React.createElement("span", null, React.createElement("i", null, item.topic))
                                     ), 
                                     React.createElement("div", {className: "col-md-1 col-sm-2 col-xs-3"}, 
-                                        React.createElement("button", {onClick: this.goToManagePage.bind(this, item), className: "btn btn-default btn-sm"}, "Edit"), 
-                                        React.createElement("button", {onClick: this.deleteItem.bind(this, item), className: "btn btn-default btn-sm"}, "Delete")
+                                        React.createElement("span", {className: "glyphicon glyphicon-edit", style: {marginRight: '8px'}, onClick: this.goToManagePage.bind(this, item)}), 
+                                        React.createElement("span", {className: "glyphicon glyphicon-trash", onClick: this.deleteItem.bind(this, item)})
                                     )
                             )
                         )

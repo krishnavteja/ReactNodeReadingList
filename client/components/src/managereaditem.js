@@ -140,12 +140,6 @@
 				  </div>
 				  <button onClick={this.saveChanges.bind(this)} className="btn btn-default">Submit</button>
 
-				  <p>Url - {this.state.item.url}</p>
-				  <p>Notes - {this.state.item.description}</p>
-				  <p>Tags - {this.state.item.topic}</p>
-				  <p>Priority - {this.state.item.priority}</p>
-				  <p>Complete - {this.state.item.complete  ? this.state.item.complete.toString() : ''}</p>
-                
             </div>);
         }
     }); 

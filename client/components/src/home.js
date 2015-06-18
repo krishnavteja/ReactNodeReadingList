@@ -63,6 +63,10 @@
                 e.cancelBubble = true;
             if (e.stopPropagation) 
                 e.stopPropagation();
+
+            if(url.indexOf('http') == -1)
+                url = 'http://' + url;
+
             location.href = url;
         },
         render: function() {
@@ -72,7 +76,9 @@
                     <h1 style={{ textAlign : 'center' }}>Reading List</h1>
                 </div>
                 <div className="col-md-1 col-sm-2 col-xs-3">
-                    <a href="managereaditem.html" className="btn btn-primary" style={{marginTop:'24px'}}>New</a>
+                    <a href="managereaditem.html" className="btn btn-primary" style={{marginTop:'24px'}}>
+                        <span className="glyphicon glyphicon-plus"></span>
+                    </a>
                 </div>
             </div>
                 
@@ -89,8 +95,8 @@
                                         <span>Tags: </span><span><i>{item.topic}</i></span>
                                     </div>
                                     <div className="col-md-1 col-sm-2 col-xs-3">
-                                        <button onClick={this.goToManagePage.bind(this, item)} className="btn btn-default btn-sm">Edit</button>
-                                        <button onClick={this.deleteItem.bind(this, item)} className="btn btn-default btn-sm">Delete</button>
+                                        <span className="glyphicon glyphicon-edit" style={{marginRight: '8px'}} onClick={this.goToManagePage.bind(this, item)}></span>
+                                        <span className="glyphicon glyphicon-trash" onClick={this.deleteItem.bind(this, item)}></span>
                                     </div>
                             </div>
                         </a>
