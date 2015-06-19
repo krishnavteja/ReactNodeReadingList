@@ -17,7 +17,7 @@ import { readitem } from "../server/models/readitem"; // get our mongoose model
 // =======================
 // configuration =========
 // =======================
-var port = process.env.PORT || 8888; // used to create, sign, and verify tokens
+var port = process.env.PORT || 3000; // used to create, sign, and verify tokens
 mongoose.connect(config.database); // connect to database
 
 // use body parser so we can get info from POST and/or URL parameters
@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 // get an instance of the router for api routes
 var apiRoutes = express.Router(); 
 
-// route to authenticate a user (POST http://localhost:8080/api/newreaditem?description=xyz...)
+// route to authenticate a user (POST http://localhost:3000/api/newreaditem?description=xyz...)
 apiRoutes.post('/newreaditem', (req, res) => {
   // create a new readitem
   var newReadItem = new readitem({ 
@@ -116,14 +116,14 @@ apiRoutes.delete('/readitem/:id', function (req, res){
 
 
 
-// route to return all items (GET http://localhost:8080/api/readitems)
+// route to return all items (GET http://localhost:3000/api/readitems)
 apiRoutes.get('/readitems', (req, res) => {
   readitem.find({}, (err, items) => {
     res.json(items);
   });
 });  
 
-// route to return all items (GET http://localhost:8080/api/readitems)
+// route to return all items (GET http://localhost:3000/api/readitems)
 apiRoutes.get('/readitem/:itemid', (req, res) => {
   readitem.findById(req.params.itemid, function(err, item) {
             if (err)
@@ -132,7 +132,7 @@ apiRoutes.get('/readitem/:itemid', (req, res) => {
   });
 });
 
-// route to delete all items (DELETE http://localhost:8080/api/readitems)
+// route to delete all items (DELETE http://localhost:3000/api/readitems)
 apiRoutes.delete('/readitems', (req, res) => {
   readitem.find({}).remove((err, delRes) =>{
     res.json({ message: 'Deleted successfully.'});

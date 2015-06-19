@@ -16,7 +16,7 @@
             	this.itemId = itemIdParamValue;
 
 	            $.ajax({
-                url: "http://localhost:8888/api/readitem/" + itemIdParamValue,
+                url: "http://localhost:3000/api/readitem/" + itemIdParamValue,
                 dataType: 'json',
                 success: function(data) {
                         that.setState({ item: data });
@@ -35,12 +35,12 @@
           },
         saveChanges: function() {
         	var type = "POST";
-        	var url = "http://localhost:8888/api/newreaditem";
+        	var url = "http://localhost:3000/api/newreaditem";
 
         	if(this.itemId)
         	{
         		type = "PUT";
-        		url = "http://localhost:8888/api/readitem/" + this.itemId;
+        		url = "http://localhost:3000/api/readitem/" + this.itemId;
         	}
 
 			var postData = "url=" + this.state.item.url + "&description=" + this.state.item.description + "&topic=" + this.state.item.topic + 

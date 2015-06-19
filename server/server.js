@@ -7,7 +7,7 @@ var morgan = require("morgan");
 var mongoose = require("mongoose");
 var config_1 = require("./config");
 var readitem_1 = require("../server/models/readitem");
-var port = process.env.PORT || 8888;
+var port = process.env.PORT || 3000;
 mongoose.connect(config_1.config.database);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
