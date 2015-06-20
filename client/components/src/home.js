@@ -8,7 +8,7 @@
             var that = this;
 
             $.ajax({
-                url: "http://localhost:8888/api/readitems",
+                url: "http://localhost:3000/api/readitems",
                 dataType: 'json',
                 success: function(data) {
                         that.setState({ items: data });
@@ -43,7 +43,7 @@
             var itemId = item._id;
 
             $.ajax({
-                url: "http://localhost:8888/api/readitem/" + itemId,
+                url: "http://localhost:3000/api/readitem/" + itemId,
                 type: 'delete',
                 dataType: 'json',
                 success: function(data) {
