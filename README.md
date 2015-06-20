@@ -1,5 +1,5 @@
 # ReactNodeReadingList
-Personal Reading List with status tracking using ReactJS and Node + Express + MongoDB backend and gulp for task handling.
+Proof of Concept to create a Personal Reading List using ReactJS and Node + Express + MongoDB backend and gulp for task handling. Used TypeScript for NodeJS api.
 
 Steps:
 
