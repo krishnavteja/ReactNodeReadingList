@@ -17,20 +17,18 @@ This will get the mongodb up and running.
 
 4) Go into "server" folder and run 
 
- **$cd server**
  **$npm install**
 
 5) Go into "client" folder and run
 
- **cd $client**
  **$npm install**
 
-6) run the following command to get the node api running
+6) run the following command from the root folder to get the node api running
 
  **$gulp**
 
 7) If you need a server to run the app under, you can use the mongoose server. Just double click it and to the url
 
- http://localhost:3000/client/views/home.html
+ http://localhost:8080/client/views/home.html
 
 
