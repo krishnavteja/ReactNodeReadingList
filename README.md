@@ -27,7 +27,7 @@ This will get the mongodb up and running.
 
  **$gulp**
 
-7) If you need a server to run the app under, you can use the mongoose server. Just double click it and to the url
+7) If you need a server to run the app under, you can use the mongoose server included at the root. Just double click it and to the url. Ideally we should use express's routes to render the right html but for this POC, I decided to keep things easy.
 
  http://localhost:8080/client/views/home.html
 
