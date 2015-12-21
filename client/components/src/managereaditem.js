@@ -51,7 +51,7 @@
 				  url: url,
 				  data: postData,
 				  success: function(result){
-				        location.href = "home.html";
+				        location.href = "/";
 				  },
 				  error: function(XMLHttpRequest, textStatus, errorThrown) {
 				     alert("some error - " + textStatus + " - " + errorThrown + " - " + XMLHttpRequest);
@@ -113,7 +113,7 @@
 	                    <h1 style={{ textAlign : 'center' }}>Manage Read Item</h1>
 	                </div>
 	                <div className="col-md-1 col-sm-2 col-xs-3">
-	                    <a href="home.html" className="btn btn-default btn-sm" style={{marginTop:'24px'}}>Home</a>
+	                    <a href="/" className="btn btn-default btn-sm" style={{marginTop:'24px'}}>Home</a>
 	                </div>
             	</div>
 
