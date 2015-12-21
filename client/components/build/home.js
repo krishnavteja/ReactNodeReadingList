@@ -29,7 +29,7 @@
                 e.cancelBubble = true;
             if (e.stopPropagation) 
                 e.stopPropagation();
-            location.href = "managereaditem.html?itemid=" + item._id;
+            location.href = "manage/" + item._id;
         },
         deleteItem: function(item, e){
             var that = this;
@@ -76,7 +76,7 @@
                     React.createElement("h1", {style: { textAlign : 'center'}}, "Reading List")
                 ), 
                 React.createElement("div", {className: "col-md-1 col-sm-2 col-xs-3"}, 
-                    React.createElement("a", {href: "managereaditem.html", className: "btn btn-primary", style: {marginTop:'24px'}}, 
+                    React.createElement("a", {href: "manage", className: "btn btn-primary", style: {marginTop:'24px'}}, 
                         React.createElement("span", {className: "glyphicon glyphicon-plus"})
                     )
                 )

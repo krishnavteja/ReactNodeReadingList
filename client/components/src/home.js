@@ -29,7 +29,7 @@
                 e.cancelBubble = true;
             if (e.stopPropagation) 
                 e.stopPropagation();
-            location.href = "managereaditem.html?itemid=" + item._id;
+            location.href = "manage/" + item._id;
         },
         deleteItem: function(item, e){
             var that = this;
@@ -76,7 +76,7 @@
                     <h1 style={{ textAlign : 'center' }}>Reading List</h1>
                 </div>
                 <div className="col-md-1 col-sm-2 col-xs-3">
-                    <a href="managereaditem.html" className="btn btn-primary" style={{marginTop:'24px'}}>
+                    <a href="manage" className="btn btn-primary" style={{marginTop:'24px'}}>
                         <span className="glyphicon glyphicon-plus"></span>
                     </a>
                 </div>

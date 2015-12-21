@@ -1,12 +1,13 @@
 {
   "name": "ReactNodeReadingList",
-  "version": "1.0.0.0",
-  "description": "POC Application to create a reading list using ReactJS, NodeJS, MongoDB, ExpressJS, Mongoose and TypeScript"
+  "version": "0.1.0",
+  "description": "POC Application to create a reading list using ReactJS, NodeJS, MongoDB, ExpressJS, Mongoose and TypeScript",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-nodemon": "^2.0.3"
   },
   "dependencies": {
+    "ejs": "^2.3.2",
     "gulp": "^3.9.0",
     "gulp-react": "^3.0.1"
   }

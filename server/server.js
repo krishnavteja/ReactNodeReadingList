@@ -5,6 +5,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var morgan = require("morgan");
 var mongoose = require("mongoose");
+var path = require("path");
 var config_1 = require("./config");
 var readitem_1 = require("../server/models/readitem");
 var port = process.env.PORT || 3000;
@@ -12,6 +13,10 @@ mongoose.connect(config_1.config.database);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+app.set('views', path.join(__dirname, '../client/views'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.use(express.static(path.join(__dirname, '../client')));
 app.use(function (req, res, next) {
     for (var key in req.query) {
         req.query[key.toLowerCase()] = req.query[key];
@@ -19,7 +24,13 @@ app.use(function (req, res, next) {
     next();
 });
 app.get('/', function (req, res) {
-    res.send('Hello! The API is at http://localhost:' + port + '/api');
+    res.render('home');
+});
+app.get('/home', function (req, res) {
+    res.render('home');
+});
+app.get('/manage/:id?', function (req, res) {
+    res.render('managereaditem', { itemid: req.body.id });
 });
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

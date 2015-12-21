@@ -10,6 +10,7 @@ var app: express.Express = express();
 import * as bodyParser from "body-parser";
 import * as morgan from "morgan";
 import * as mongoose from "mongoose";
+import * as path from "path";
 
 import { config } from "./config"; // get our config file
 import { readitem } from "../server/models/readitem"; // get our mongoose model
@@ -27,6 +28,12 @@ app.use(bodyParser.json());
 // use morgan to log requests to the console
 app.use(morgan('dev'));
 
+app.set('views', path.join(__dirname, '../client/views'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.use(express.static(path.join(__dirname, '../client')));
+
 // insert this before your routes
 app.use((req, res, next)  => {
   for (var key in req.query)
@@ -41,7 +48,15 @@ app.use((req, res, next)  => {
 // =======================
 // basic route
 app.get('/',(req, res) => {
-   res.send('Hello! The API is at http://localhost:' + port + '/api');
+    res.render('home');
+});
+
+app.get('/home',(req, res) => {
+    res.render('home');
+});
+
+app.get('/manage/:id?',(req, res) => {
+    res.render('managereaditem', {itemid : req.body.id});
 });
 
 app.use((req, res, next) => {
